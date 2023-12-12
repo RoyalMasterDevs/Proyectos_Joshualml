@@ -1,3 +1,8 @@
+Portafolio en Android: https://www.figma.com/proto/mylWRaLPKdG6kYHVUXwXdq/Mi-portafolio?type=design&node-id=2-2&t=nrVyWRkSmiXVSJVM-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=20%3A9
+
+Portadolio en Web: https://www.figma.com/proto/mylWRaLPKdG6kYHVUXwXdq/Mi-portafolio?type=design&node-id=20-9&t=nrVyWRkSmiXVSJVM-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=20%3A9
+
+
 # ÁRBOL DE PROYECTO
 
 ## Algoritmo de Proyecto
