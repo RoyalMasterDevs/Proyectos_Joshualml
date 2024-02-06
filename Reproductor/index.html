@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuscadorAutos</title>
+
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Reproductor</h1>
+    <div class="base">
+        <div class="pantalla">
+            <img src="./IMG/musica.png" alt="album" class="album">
+        </div>
+        <svg class="botoneros" xmlns="http://www.w3.org/2000/svg" width="391" height="207" viewBox="0 0 391 207" fill="none">
+            <path d="M391 107C391 195.642 284.863 206.5 197.23 206.5C109.597 206.5 0 195.642 0 107C0 18.3584 109.597 0 197.23 0C284.863 0 391 18.3584 391 107Z" fill="#5F000B"/>
+        </svg>
+        <button id="play_button" class="play_button">
+            <img id="play" class="play visible" src="./IMG/play icon.png" alt="play">
+            <img id="pause" class="icono --pausa" src="./IMG/icono pausa.png" alt="pausa">
+        </button>
+        <img class="icono --Anterior" src="./IMG/icono anterior.png" alt="Anterior">
+        <img class="icono --Siguiente" src="./IMG/icono siguiente.png" alt="Siguiente">
+        <img class="icono --Mas" src="./IMG/icono mas.png" alt="Mas">
+        <img class="icono --Menos" src="./IMG/icono menos.png" alt="Menos">
+        <div class="repeat_button">
+            <img class="icono --Repeat" src="./IMG/icono repeat.png" alt="Repeat">
+            <img class="icono --random" src="./IMG/icono random.png" alt="random">
+        </div>
+        
+    </div>
+    <audio id="audio-player" src="./songs/Hikaru Nara.mp3">  
+        Tu navegador no soporta el elemento <code>audio</code>.
+    </audio>
+    <div class="wrapper">
+        <input id="player-volume" type="range" value="20">
+        <span class="slide-value">0</span>
+    </div>
+    
+    
+    
+    <script src="./JS/prueba.js"></script>
+    <script src="./JS/Reproductor.js"></script>
+</body>
+</html>
