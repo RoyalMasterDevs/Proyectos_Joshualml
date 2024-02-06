@@ -41,7 +41,7 @@ nav{
 nav img{
     border: solid;
     padding: 20px;
-    width: 20%;
+    width: 50%;
     height: 20%;
 }
 
@@ -51,7 +51,7 @@ a{
     text-decoration: none;
 }  */
 
-/*PROPIEDAD FLEX*/
+/*PROPIEDAD GRID*/
 nav ul{
     
     display: grid;
