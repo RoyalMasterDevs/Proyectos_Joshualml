@@ -13,6 +13,9 @@
     padding-top: 80px;
 }
 
+#resultado{
+    gap: 2rem;
+}
 .selector{
     padding: 4px;
     

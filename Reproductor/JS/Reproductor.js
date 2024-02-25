@@ -5,39 +5,45 @@ const btnRepeat = document.querySelector("#btn-repeat");
 const btnPrev = document.querySelector("#btn-prev");
 const btnNext = document.querySelector("#btn-next");
 const btnVolume = document.querySelector("#btn-volume");
-const btnVolumeIcon = document.querySelector("#btn-volume i");
-const playerVolume = document.querySelector("#player-volume");
+const iconVolumeUP = document.querySelector("#UP");
+const iconVolumeMID = document.querySelector("#MID");
+const iconVolumeDOWN = document.querySelector("#DOWN");
+const iconVolumeMUTE = document.querySelector("#MUTE");
+const playerVolume = document.querySelector(".player-volume");
 const songName = document.querySelector("#song-name");
 const songAuthor = document.querySelector("#song-author");
 const playerCurrentTime = document.querySelector("#player-current-time");
 const playerDuration = document.querySelector("#player-duration");
-const playerProgress = document.querySelector("#player-progress");
+const playerProgress = document.querySelector(".player-progress");
 const audioPlayer = document.querySelector("#audio-player");
 const slideValue = document.querySelector(".slide-value");
 
 
 
-let currentSong = 0;
+let currentSong = 1;
 let repeatSong = false;
+let miniRangeVal = 0;
 
-
+const formatSecondsToMinutes = (seconds) => {
+    return new Date(seconds * 1000).toISOString().slice(14, 19);
+};
 
 const songs = [ 
     {
-        name: "La Voz de tus Sentidos",
-        author: "Jannine Rada",
-        path: "./songs/La Voz de tus Sentidos - Jannine rada.mp3",
-    }
-    //   {
-    //     name: "Jazzy Abstract Beat",
-    //     author: "Coma Media",
-    //     path: "./assets/songs/Coma Media - Jazzy Abstract Beat.mp3",
-    //   },
-    //   {
-    //     name: "Sexy Fashion Beats",
-    //     author: "Coma Media",
-    //     path: "./assets/songs/Coma Media - Sexy Fashion Beats.mp3",
-    //   },
+        name: "Hikaru Nara",
+        author: "Goose House",
+        path: "./songs/Hikaru Nara.mp3",
+    },
+    {
+        name: "Nothing is Lost",
+        author: "Marco Sfogli",
+        path: "./songs/Nothing is Lost.mp3",
+    },
+    {
+        name: "This game",
+        author: "Konomi Suzuki",
+        path: "./songs/This game.mp3",
+    },
     //   {
     //     name: "Best Time",
     //     author: "FASSounds",
@@ -51,7 +57,14 @@ const songs = [
 ];
 
 
-btnPlay.addEventListener("click", () => {
+btnPlay.addEventListener("click", () => play_pause());
+playerVolume.addEventListener("input", () => changeVolume());
+audioPlayer.addEventListener("timeupdate", () => timeUpdate());
+playerProgress.addEventListener("input", () => changeTime());
+
+const play_pause = () => {
+    // const song = songs[currentSong];
+    // audioPlayer.src = song.path;
     if (audioPlayer.paused) {
         audioPlayer.play();
         btnPlayIcon.classList.remove("visible");
@@ -61,25 +74,43 @@ btnPlay.addEventListener("click", () => {
         btnPlayIcon.classList.add("visible");
         btnPuaseIcon.classList.remove("visible");
     }
-});
-playerVolume.addEventListener("input", () => {
-    let rangeVal = playerVolume.value;
-    slideValue.innerHTML = rangeVal;
-});
-btnPrev.addEventListener("click", () => changeSong(false));
+}
+const changeVolume = () => {
+    const { value } = playerVolume;
+    slideValue.innerHTML = value;
+    miniRangeVal = value / 100;
+    audioPlayer.volume = miniRangeVal;
+
+    if((value <= 60)&(value > 30)){
+        iconVolumeUP.classList.remove("visible");
+        iconVolumeMID.classList.add("visible");
+        iconVolumeDOWN.classList.remove("visible");
+    }
+    else if((value <= 30)&(value > 0)){
+        iconVolumeMID.classList.remove("visible");
+        iconVolumeDOWN.classList.add("visible");
+        iconVolumeMUTE.classList.remove("visible");
+    }
+    else if(value == 0){
+        iconVolumeDOWN.classList.remove("visible");
+        iconVolumeMUTE.classList.add("visible");
+    }
+    else{
+        iconVolumeUP.classList.add("visible");
+    }
+}
+const timeUpdate = () => {
+    const { currentTime, duration } = audioPlayer;
+    playerCurrentTime.innerHTML = formatSecondsToMinutes(currentTime);
+    playerDuration.innerHTML = formatSecondsToMinutes(duration);
+    playerProgress.max = duration;
+    playerProgress.value = currentTime;
+}
+const changeTime = () => {
+    audioPlayer.currentTime = playerProgress.value;
+};
 
 btnNext.addEventListener("click", () => changeSong());
-btnRepeat.addEventListener("click", () => toggleRepeatSong());
-playerProgress.addEventListener("input", () => changeTime());
-audioPlayer.addEventListener("timeupdate", () => {
-    let currentTime1 = audioPlayer.currentTime;
-    playerCurrentTime.innerHTML = currentTime1;
-    console.log(currentTime1);
-});
-audioPlayer.addEventListener("ended", () => ended());
-
-
-
 const changeSong = (next = true) => {
     if (next && currentSong < songs.length - 1) {
         currentSong++;
@@ -92,7 +123,6 @@ const changeSong = (next = true) => {
     updatePlayer();
     togglePlaySong();
 };
-
 const updatePlayer = () => {
     const song = songs[currentSong];
 
@@ -102,42 +132,24 @@ const updatePlayer = () => {
     playerProgress.value = audioPlayer.currentTime;
 };
 
+btnPrev.addEventListener("click", () => changeSong(false));
+
+
+
+
+btnRepeat.addEventListener("click", () => toggleRepeatSong());
+
+audioPlayer.addEventListener("ended", () => ended());
+
+
+
+
+
+
 const toggleRepeatSong = () => {
     repeatSong = !repeatSong;
     btnRepeat.classList.toggle("btn-activated");
 };
-
-const timeUpdate = () => {
-    const { currentTime, duration } = audioPlayer;
-
-    if (isNaN(duration)) return;
-
-    playerDuration.innerHTML = formatSecondsToMinutes(duration);
-    playerCurrentTime.innerHTML = formatSecondsToMinutes(currentTime);
-    playerProgress.max = duration;
-    playerProgress.value = currentTime;
-};
-
-// const changeVolume = () => {
-//     const { value } = playerVolume;
-
-//     audioPlayer.volume = value;
-
-//     if (value == 0) {
-//         btnVolumeIcon.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
-//     } else {
-//         btnVolumeIcon.classList.replace("bi-volume-mute-fill", "bi-volume-up-fill");
-//     }
-// };
-
-const changeTime = () => {
-    audioPlayer.currentTime = playerProgress.value;
-};
-
-const formatSecondsToMinutes = (seconds) => {
-    return new Date(seconds * 1000).toISOString().slice(14, 19);
-};
-
 const ended = () => {
     repeatSong ? togglePlaySong() : changeSong(true);
 };
