@@ -6,10 +6,7 @@
     margin: 0;
     position: absolute;
 }
-.slide-value{
-    position: relative;
-    
-}
+
 
 body{
     display: grid;
@@ -40,9 +37,13 @@ h1{
 .base{
     width: 390px;
     height: 500px;
-    border-radius: 20px;
+    /* border-radius: 20px;
     border: 3px solid #000;
+    background: #B22424; */
+    border-radius: 38px;
     background: #B22424;
+    box-shadow:  6px -5px 8px #5a4d53,
+             -10px 5px 5px #be345e;
     position: relative;
     
 
@@ -74,24 +75,57 @@ h1{
     }
 }
 
-.botoneros{
-    fill: #5F000B;
+.player-progress{
+    margin-top: 210px;
+    margin-left: 20px;
     width: 300px;
-    height: 150px;
-    margin-top: 300px;
-    margin-left: 42px;
-    
-   
-   
+    height: 7px;
+    position: relative;
+    appearance: none;
+    background: transparent;
+    outline: none;
+    border: 1px solid #fff;
+    overflow: hidden;
+    cursor: pointer;
+}
+.player-progress::-webkit-slider-thumb{
+    appearance: none;
+    width: 5px;
+    height: 5px;
+    background: #f50000;
+    border-radius: 50%;
+    box-shadow: -400px 0px 0 400px #8f5e5e;
+    cursor: pointer;
+}
+
+.currentTime{
+    position: relative;
+    margin-left: 25px;
+}
+.durationTime{
+    position: relative;
+    margin-left: 215px;
+}
+
+.botoneros{
+    /* fill: #5F000B; */
+    width: 300px;
+    height: 100px;
+    margin-top: 315px;
+    margin-left: 42px; 
+    border-radius: 38px;
+    background: #B22424;
+    box-shadow: inset 20px -20px 13px #8b1c1c,
+            inset -5px 5px 13px #d92c2c;
 }
 
 .play_button{
     width: 80px;
     height: 72px;
     border: solid;
-    border-color: rgba(255, 0, 92, 0.24);
-    margin-left: 153px;
-    margin-top: 335px;
+    border-color: rgb(216, 44, 107);
+    margin-left: 111.5px;
+    margin-top: 10px;
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
@@ -105,12 +139,9 @@ h1{
 .play{
     width: 60px;
     height: 60px;
-    fill: url(<path-to-image>), lightgray 50% / contain no-repeat;
-    stroke-width: 4px;
-    stroke: rgba(255, 0, 92, 0.24);
     visibility: hidden;
-    margin-left: 9px;
-    margin-top: 5px;
+    margin-left: 7px;
+    margin-top: 3px;
 }
 .play.visible{
     visibility: visible;
@@ -118,6 +149,7 @@ h1{
 .--pausa{
     margin-left: 7px;
     margin-top: 3px;
+    filter:saturate(100);
     visibility: hidden;
 }
 
@@ -125,38 +157,49 @@ h1{
     visibility: visible;
 }
 
+.btn_anterior{
+    width: 60px;
+    height: 60px;
+    margin-top: 16px;
+    margin-left: 26px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.btn_siguiente{
+    width: 60px;
+    height: 60px;
+    margin-top: 16px;
+    margin-left: 214px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
 .icono{
     width: 60px;
-    filter:brightness(1.5)
+    filter:brightness(.6)
 }
 
 .--Anterior{
-    margin-top: 320px;
-    margin-left: 85px;
+    filter:contrast(100);
 }
 
 .--Siguiente{
-    margin-top: 320px;
-    margin-left: 240px;
+    filter:contrast(100);
+}
+.--Anterior:hover{
+    filter:contrast(0);
 }
 
-.--Mas{
-    margin-top: 380px;
-    margin-left: 240px;
-    filter:brightness(1.9)
-}
-
-.--Menos{
-    margin-top: 380px;
-    margin-left: 85px;
-    filter:brightness(1.9)
+.--Siguiente:hover{
+    filter:contrast(0);
 }
 
 .repeat_button{
     width: 60px;
     height: 60px;
-    margin-top: 415px;
-    margin-left: 2px;
+    margin-top: 425px;
+    margin-left: 280px;
     border: solid;
     border-color: rgba(0, 0, 0, 0.5);
 }
@@ -170,4 +213,106 @@ h1{
     width: 50px;
     height: 50px;
     margin-left: 1px;
+}
+
+.volumen{
+    width: 200px;
+    height: 50px;
+    position: relative;
+    margin-top: 140px;
+    margin-left: 43px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+.box-slide{
+    position: relative;
+    gap: 8px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 8px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5),
+    #B22424);
+    border-radius: 40px;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1),
+                -15px -15px 20px #a81a1a;
+}
+.player-volume{
+    width: 100px;
+    position: relative;
+    appearance: none;
+    background: #B22424;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1),
+                -5px -5px 10px #a81a1a,
+                inset 5px 5px 5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    cursor: pointer;
+}
+.player-volume::-webkit-slider-thumb{
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #6d6e06;
+    border-radius: 50%;
+    border: 1.2px solid #000000;
+    box-shadow: -407px 0 0 400px #000;
+    cursor: pointer;
+}
+
+.volume{
+    width: 40px;   
+}
+
+.--up{
+    position: relative;
+    visibility: hidden;
+}
+.--mid{
+    margin-top: 8px;
+    margin-left: 8px;
+    visibility: hidden;
+}
+.--down{
+    width: 27px;
+    margin-top: 8px;
+    margin-left: 8px;
+    visibility: hidden;
+}
+.--mute{
+    width: 36px;
+    margin-top: 8px;
+    margin-left: 8px;
+    visibility: hidden;
+}
+.--up.visible{
+    visibility: visible;
+}
+.--mid.visible{
+    visibility: visible;
+}
+.--down.visible{
+    visibility: visible;
+}
+.--mute.visible{
+    visibility: visible;
+}
+
+.slide-value{
+    position: relative;
+    text-align: center;
+    width: 30px;
+    font-weight: 500;
+    color: #6d6e06;
+    background: black;
+    border-radius: 20%;
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.1),
+                -5px -5px 10px #a31818,
+                inset 5px 5px 10px rgba(0, 0, 0, 0.6),
+                inset -5px -5px 5px rgba(238, 164, 164, 0.1);
+
 }
