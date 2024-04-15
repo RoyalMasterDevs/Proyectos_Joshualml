@@ -1,0 +1,182 @@
+*{
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+body{
+    /* width: 100%; */
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 2fr 12fr;
+    /* position: relative; */
+    place-content: center;
+}
+header{
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #0A373E;
+    /* height: 12vh; */
+    min-height: 25px;
+    width: 100vw;
+    align-items: center;
+    
+    
+}
+.hamburguesa{
+    width: 10vw;
+    max-width: 90px;
+    min-width: 60px;
+    min-height: 60px;
+    height: 10vw;
+    max-height: 90px;
+    align-content: center;
+    background: transparent;
+    border: none;
+    
+}
+.folder{
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    margin: 0;
+}
+nav{
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.botoneros{
+    height: 5em;
+    width: 100rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    
+}
+.btn{
+    padding: 0.7ex;
+    background: linear-gradient(180deg, 
+    rgba(77,74,214,1) 0%, 
+    rgba(145,73,217,1) 100%);
+    border-radius: 80px;
+    color: #BEFF04;
+    text-decoration: none;
+    font-size: clamp(8px, 3vw, 20px);
+    font-family: "Rethink Sans";
+    border: 0.5vw solid #6DCFC3;
+    
+}
+
+main{
+    grid-row: 2 / 3;
+    width: 100vw;
+    /* height: 88vh;  */
+    position: relative;
+    display: grid;
+    place-items: center;
+       
+}
+
+
+.fondo{
+    width: 100vw;
+    height: 100%; 
+    position: absolute;
+}
+h1{
+    position: relative;
+    font-family: "Kite One";
+    font-size: 15vw;
+    opacity: 0.2;
+    color: white;
+    display: grid;
+    text-align: center;
+}
+
+@media screen and (max-width: 490px) {
+    nav{
+        display: none;
+    }
+    .folder{
+        z-index: 2;
+    }
+    .hamburguesa{
+        margin-top: 1em;
+        height: 2em;
+        width: 4em;
+        background-color: #0A373E;
+        border-radius: 10%;
+        /* box-shadow: 16px 14px 20px rgb(58, 47, 47); */
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .hamburguesa::before{
+        content: "";
+        position: absolute;
+        height: 300px;
+        width: 300px;
+        background-image: conic-gradient(rgb(95, 218, 24) 20deg, transparent 120deg);
+        animation: rotar 2s linear infinite;
+    }
+    @keyframes rotar{
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(-360deg);
+        }
+    }
+    .hamburguesa::after{
+        content: "";
+        position: absolute;
+        height: 55px;
+        width: 55px;
+        background-color: #0A373E;
+        border-radius: 10%;
+        box-shadow: inset 16px 14px 20px rgb(6, 29, 49);;
+    
+    }
+    header{
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+    nav.visible{
+        /* z-index: 4; */
+        width: 200px;
+        height: 400px;
+        display: block;
+        /* border: solid; */
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .6);
+        background-color: rgb(44, 27, 48);
+        border-radius: 2%;
+        /* position: absolute; */
+        /* margin-top: 20vw;
+        margin-left: 20.5vh; */
+    }
+    .botoneros.visible{
+        width: 196px;
+        height: 396px;
+        display: flex;
+        flex-direction: column;
+        /* border: solid; */
+        /* position: absolute; */
+    }
+    .btn{
+        font-size: large;
+    }
+}
