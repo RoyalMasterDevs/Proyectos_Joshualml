@@ -6,7 +6,19 @@ const maximo = document.querySelector('#maximo');
 const puertas = document.querySelector('#puertas');
 const transmision = document.querySelector('#transmision');
 const color = document.querySelector('#color');
+const Filtros = document.querySelector(".btn_filtros");
+const cerrar = document.querySelector(".btn-cerrar");
+const barraLateral = document.querySelector(".barra_lateral");
 
+//botones
+cerrar.addEventListener("click", () => {
+    barraLateral.classList.remove("visible");
+    Filtros.classList.remove("invisible");
+});
+Filtros.addEventListener("click", () => {
+    barraLateral.classList.add("visible");
+    Filtros.classList.add("invisible");
+});
 // crear los años
 const years = document.createElement('option');
 const max = new Date().getFullYear();
@@ -101,7 +113,13 @@ function mostrarAutos(autos){
     autos.forEach(auto => {
         const autoHTML = document.createElement('p');
         autoHTML.innerHTML = `
-            <p>${auto.marca} ${auto.modelo} - ${auto.year} - ${auto.puertas} Puertas - Transmisión: ${auto.transmision} - Precio: ${auto.precio} - Color: ${auto.color}</p>
+            <p>${auto.marca} 
+            ${auto.modelo} -
+            ${auto.year} - 
+            ${auto.puertas} Puertas  <br>
+            Transmisión: ${auto.transmision}   <br>
+            Precio: $${auto.precio} -
+            Color: ${auto.color}</p>
         `;
         contenedor.appendChild(autoHTML);
     })
